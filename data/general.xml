@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<GUI name="AzTouch openHab" darkMode="0" showTime="1"/>
+	<WiFi name="WiFi" SSID="Test-WiFi" Pass="Test-Pass"/>
+	<Secure name="Secure" active="0" pass="12345" timeout="5"/>
+	<MQTT name="MQTT" broker="Testbroker" port="1883" user="" pass="" clientName="Wallmount"/>
+	<Watchdog name="Watchdog" active="1" time="10"/>
+ </root>
