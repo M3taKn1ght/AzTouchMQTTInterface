@@ -1,5 +1,5 @@
 # Az-Touch Control
-
+![Title](images/Title.jpg)
 This is a project to use the [Az-Touch Wandmod](https://www.az-delivery.de/products/az-touch-wandgehauseset-mit-2-8-zoll-touchscreen-fur-esp8266-und-esp32) as MQTT-Client. It controls later all available MQTT-Clients and send/receive needed commands to view and manipulate each IoT-Device.
 
 ## Installation
@@ -29,7 +29,7 @@ Please make sure to update tests as appropriate.
 - [x]  Debug and Release version
 - [X]  Create class for buttons and overview 
 - [ ]  Include function to write errors to SD
-- [ ]  Implement possibility for more than 6 buttons
+- [X]  Implement possibility for more than 6 buttons
 
 ## License
 

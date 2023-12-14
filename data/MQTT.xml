@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<Element name="Switch" type="Switch" pos="1" page="1">
+		<pub>cmnd/NOUS_Monitor/POWER</pub>
+		<sub>stat/NOUS_Monitor/POWER</sub>
+	</Element>
+	<Element name="Info" type="Measurement" pos="2" page="1">
+		<sub unit="Grad">shellies/shellyht-office/sensor/temperature</sub>
+		<sub unit="%">shellies/shellyht-office/sensor/humidity</sub>
+	</Element>
+</root>
