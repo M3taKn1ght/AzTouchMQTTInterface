@@ -11,7 +11,7 @@ void setup()
   m_tft.setCursor(20, 0);
   m_tft.setTextFont(2);
   m_tft.setTextColor(TFT_RED, TFT_BLACK);
-  m_tft.drawCentreString("Az-Touch Control",m_tft.width()/2, m_tft.getCursorY(), 2);
+  m_tft.drawCentreString("AzTouchMQTTInterface",m_tft.width()/2, m_tft.getCursorY(), 2);
   m_tft.println();
   m_tft.setTextColor(TFT_GREEN, TFT_BLACK);
   m_tft.setCursor(20, m_tft.getCursorY());
@@ -190,17 +190,6 @@ void setup()
 void loop()
 {
   m_byError = 0b00000000;
-  if(m_config.getShowTime())
-  {
-    if(minute() >= m_iLockMin && m_iLockSec <= second() && !m_bShowClock)
-    {
-      m_bShowClock = true;
-    }
-  }
-  else
-  {
-    m_bShowClock = false;
-  }
 
   //First run, so draw overview on display
   if(m_bFirstrun)
@@ -239,6 +228,19 @@ void loop()
 
   m_mqttClient.loop();  //Needed to get the info
   
+  if(m_config.getShowTime())
+  {
+    //Lock screen if calculate min and sec reached AND clock is not shown AND no errors
+    if(minute() == m_iLockMin && m_iLockSec <= second() && !m_bShowClock && m_byError == 0b00000000)
+    {
+      m_bShowClock = true;
+    }
+  }
+  else
+  {
+    m_bShowClock = false;
+  }
+
   if(m_byError == 0b00000000)
   {
     checkTouched(); //Did someone touch me?
@@ -645,7 +647,7 @@ void updateTime()
     if(ulUpdateTimeout <= millis())
     {
 #if DEBUG
-      Serial.println("Timout during ntp-Update");
+      Serial.println("Timeout during ntp-Update");
       bUpdateDone = true;
 #endif
       return;
@@ -800,8 +802,8 @@ void checkTouched()
       }
       m_iLockSec = second();
  #if DEBUG
-        Serial.println("Timout min: " + String(m_iLockMin));
-        Serial.println("Timout sec: " + String(m_iLockSec));
+        Serial.println("Timeout min: " + String(m_iLockMin));
+        Serial.println("Timeout sec: " + String(m_iLockSec));
 #endif       
       if(m_bShowClock)
       {
