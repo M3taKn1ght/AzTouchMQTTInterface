@@ -1,4 +1,4 @@
-# Az-Touch Control
+# AzTouchMQTTInterface
 ![Title](images/Title.jpg)
 This is a project to use the [Az-Touch Wandmod](https://www.az-delivery.de/products/az-touch-wandgehauseset-mit-2-8-zoll-touchscreen-fur-esp8266-und-esp32) as MQTT-Client. It controls later all available MQTT-Clients and send/receive needed commands to view and manipulate each IoT-Device.
 
