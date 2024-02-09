@@ -1,3 +1,9 @@
+![GitHub License](https://img.shields.io/github/license/M3taKn1ght/AzTouchMQTTInterface?style=flat)
+![Static Badge](https://img.shields.io/badge/status-under_development-red?style=flat)
+![GitHub top language](https://img.shields.io/github/languages/top/M3taKn1ght/AzTouchMQTTInterface?style=flat)
+![GitHub language count](https://img.shields.io/github/languages/count/M3taKn1ght/AzTouchMQTTInterface?style=flat)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/M3taKn1ght/AzTouchMQTTInterface?style=flat)
+
 # AzTouchMQTTInterface
 ![Title](images/Title.jpg)
 This is a project to use the [Az-Touch Wandmod](https://www.az-delivery.de/products/az-touch-wandgehauseset-mit-2-8-zoll-touchscreen-fur-esp8266-und-esp32) as MQTT-Client. It controls later all available MQTT-Clients and send/receive needed commands to view and manipulate each IoT-Device.
