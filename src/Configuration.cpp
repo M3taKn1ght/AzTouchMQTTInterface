@@ -582,6 +582,16 @@ bool Config::storeMQTTInfos(std::vector<MQTTInfos>& vecMQTTConfig, int& iNumberp
 #endif 
             iPos = -1;            
         }
+
+        //Correct Position if to high
+        if(iPos > BUTTON_COLUMNS * BUTTON_ROWS)
+        {
+            iPos = BUTTON_COLUMNS * BUTTON_ROWS;
+        }
+        else if(iPos < -1)  //or to low
+        {
+            iPos = -1;  //This means any free position later
+        }
         newMQTTInfoElement.byPos = lowByte(iReturn);
 
 
@@ -629,8 +639,10 @@ bool Config::storeMQTTInfos(std::vector<MQTTInfos>& vecMQTTConfig, int& iNumberp
             iMaxSub++;
         }
 
+        //Check if page an position is blocked allready
         if(checkPositionAvailable(vecMQTTConfig, iPage, iPos, iNumberpages))
         {
+            //Position on page not blocked (first element), so write it fix in vector
             newMQTTInfoElement.byPage = iPage;
             newMQTTInfoElement.byPos = iPos;
             vecMQTTConfig.push_back(newMQTTInfoElement);
@@ -640,6 +652,7 @@ bool Config::storeMQTTInfos(std::vector<MQTTInfos>& vecMQTTConfig, int& iNumberp
 #if DEBUG
             Serial.println("Element " + newMQTTInfoElement.strName + " on hold.");
 #endif 
+            //Page and position blocked (missconfiguration xml?), so searching later for free position
             vecMQTTOnHold.push_back(newMQTTInfoElement);
         }
         
@@ -807,6 +820,12 @@ bool Config::checkPositionAvailable(std::vector<MQTTInfos>& vecMQTTConfig, int i
 {
     //Special case
     if(iPage == -1 || iPos == -1)
+    {
+        return false;
+    }
+
+    //Special if there are more than on page, than button 6 is blocked for "NEXT"-Button
+    if(iNumCalcPages > 1 && iPos >= BUTTON_COLUMNS * BUTTON_ROWS)
     {
         return false;
     }

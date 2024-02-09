@@ -11,7 +11,7 @@ void setup()
   m_tft.setCursor(20, 0);
   m_tft.setTextFont(2);
   m_tft.setTextColor(TFT_RED, TFT_BLACK);
-  m_tft.drawCentreString("AzTouchMQTTInterface",m_tft.width()/2, m_tft.getCursorY(), 2);
+  m_tft.drawCentreString(String(PROJECTNAME),m_tft.width()/2, m_tft.getCursorY(), 2);
   m_tft.println();
   m_tft.setTextColor(TFT_GREEN, TFT_BLACK);
   m_tft.setCursor(20, m_tft.getCursorY());
