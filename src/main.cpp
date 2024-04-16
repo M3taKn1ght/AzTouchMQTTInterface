@@ -582,14 +582,7 @@ void showTime()
   }
 
   m_tft.setTextColor(m_uiText, m_uiHeaderInfill);
-  if(isSummerTime(year(),month(),day(),hour(),1))
-  {     
-    m_tft.drawString(GetDigits(hour() + 1) + " : " + GetDigits(minute()), POSXHEADER, POSYHEADER, GFXFF);
-  }
-  else
-  {
-    m_tft.drawString(GetDigits(hour()) + " : " + GetDigits(minute()), POSXHEADER, POSYHEADER, GFXFF);
-  }  
+  m_tft.drawString(GetDigits(hour()) + " : " + GetDigits(minute()), POSXHEADER, POSYHEADER, GFXFF); 
 }
 
 void updateWiFi()
@@ -652,8 +645,16 @@ void updateTime()
 #endif
       return;
     }
-
     setTime(m_timeClient.getEpochTime());
+
+    if(isSummerTime(year(), month(), day(), hour(),1))
+    {
+#if DEBUG
+    Serial.println("Its summertime, add 1 hour to time");
+#endif
+      setTime(m_timeClient.getEpochTime() + 3600);
+    }
+
 #if DEBUG
     Serial.println("Update time");
     Serial.println("Current time: " + GetDigits(hour()) + ":" + GetDigits(minute()) + ":" + GetDigits(second()));
